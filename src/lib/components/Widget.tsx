@@ -1,6 +1,7 @@
 import { DEFAULT_LOCALE, SupportedLocale } from 'constants/locales'
 import { Provider as AtomProvider, useAtom } from 'jotai'
 import ErrorBoundary from 'lib/components/ErrorBoundary'
+import { UNMOUNTING } from 'lib/hooks/useUnmount'
 import { Provider as I18nProvider } from 'lib/i18n'
 import { injectedConnectorAtom, networkConnectorAtom } from 'lib/state'
 import styled, { keyframes, Theme, ThemeProvider } from 'lib/theme'
@@ -55,7 +56,7 @@ const WidgetWrapper = styled.div<{ width?: number | string }>`
     animation: ${slideUp} 0.25s ease-in-out;
   }
 
-  .dialog.unmounting {
+  .dialog.${UNMOUNTING} {
     animation: ${slideDown} 0.25s ease-in-out;
   }
 `
