@@ -30,7 +30,7 @@ const WidgetWrapper = styled.div<{ width?: number | string }>`
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  height: 348px;
+  height: 300px;
   min-width: 300px;
   overflow-y: hidden;
   padding: 0.25em;
