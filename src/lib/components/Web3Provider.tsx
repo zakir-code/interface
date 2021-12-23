@@ -1,7 +1,7 @@
 import { SetStateAction } from 'jotai'
-import { RESET, useUpdateAtom } from 'jotai/utils'
-import { injectedAtom, networkAtom } from 'lib/state'
-import { ReactNode, useEffect, useMemo } from 'react'
+import { RESET, useAtomValue, useUpdateAtom } from 'jotai/utils'
+import { connectorAtom, injectedAtom, networkAtom } from 'lib/state'
+import { ReactNode, useEffect, useMemo, useState } from 'react'
 import { initializeConnector, Web3ReactHooks } from 'widgets-web3-react/core'
 import { EIP1193 } from 'widgets-web3-react/eip1193'
 import { Network } from 'widgets-web3-react/network'
@@ -37,5 +37,13 @@ export default function Web3Provider({ jsonRpcEndpoint, provider, children }: We
   const setInjected = useUpdateAtom(injectedAtom)
   useConnector(EIP1193, provider, setInjected)
 
-  return <>{children}</>
+  // TODO(zzmp): zustand does not support swapping stores;
+  // see https://github.com/pmndrs/zustand/issues/721#issuecomment-999983109
+  const [key, setKey] = useState(0)
+  const connector = useAtomValue(connectorAtom)
+  useEffect(() => {
+    setKey((key) => ++key)
+  }, [connector])
+
+  return <div key={key}>{children}</div>
 }
