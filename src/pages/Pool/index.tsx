@@ -7,7 +7,7 @@ import { SwapPoolTabs } from '../../components/NavigationTabs'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
+import { StyledInternalLink, /*ExternalLink,*/ TYPE, HideSmall } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
@@ -18,7 +18,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
 
@@ -27,10 +27,10 @@ const PageWrapper = styled(AutoColumn)`
   width: 100%;
 `
 
-const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-  overflow: hidden;
-`
+// const VoteCard = styled(DataCard)`
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+//   overflow: hidden;
+// `
 
 const TitleRow = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -127,31 +127,31 @@ export default function Pool() {
     <>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
-        <VoteCard>
-          <CardBGImage />
-          <CardNoise />
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.white fontWeight={600}>Liquidity provider rewards</TYPE.white>
-              </RowBetween>
-              <RowBetween>
-                <TYPE.white fontSize={14}>
-                  {`Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`}
-                </TYPE.white>
-              </RowBetween>
-              <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                target="_blank"
-                href="https://uniswap.org/docs/v2/core-concepts/pools/"
-              >
-                <TYPE.white fontSize={14}>Read more about providing liquidity</TYPE.white>
-              </ExternalLink>
-            </AutoColumn>
-          </CardSection>
-          <CardBGImage />
-          <CardNoise />
-        </VoteCard>
+        {/*<VoteCard>*/}
+        {/*  <CardBGImage />*/}
+        {/*  <CardNoise />*/}
+        {/*  <CardSection>*/}
+        {/*    <AutoColumn gap="md">*/}
+        {/*      <RowBetween>*/}
+        {/*        <TYPE.white fontWeight={600}>Liquidity provider rewards</TYPE.white>*/}
+        {/*      </RowBetween>*/}
+        {/*      <RowBetween>*/}
+        {/*        <TYPE.white fontSize={14}>*/}
+        {/*          {`Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`}*/}
+        {/*        </TYPE.white>*/}
+        {/*      </RowBetween>*/}
+        {/*      <ExternalLink*/}
+        {/*        style={{ color: 'white', textDecoration: 'underline' }}*/}
+        {/*        target="_blank"*/}
+        {/*        href="https://uniswap.org/docs/v2/core-concepts/pools/"*/}
+        {/*      >*/}
+        {/*        <TYPE.white fontSize={14}>Read more about providing liquidity</TYPE.white>*/}
+        {/*      </ExternalLink>*/}
+        {/*    </AutoColumn>*/}
+        {/*  </CardSection>*/}
+        {/*  <CardBGImage />*/}
+        {/*  <CardNoise />*/}
+        {/*</VoteCard>*/}
 
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
@@ -162,15 +162,15 @@ export default function Pool() {
                 </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
+                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/FX">
                   Create a pair
                 </ResponsiveButtonSecondary>
                 <ResponsiveButtonPrimary
                   id="join-pool-button"
                   as={Link}
                   padding="6px 8px"
-                  borderRadius="12px"
-                  to="/add/ETH"
+                  // borderRadius="12px"
+                  to="/add/FX"
                 >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
@@ -193,14 +193,14 @@ export default function Pool() {
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
-                <ButtonSecondary>
-                  <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
-                      Account analytics and accrued fees
-                    </ExternalLink>
-                    <span> ↗</span>
-                  </RowBetween>
-                </ButtonSecondary>
+                {/*<ButtonSecondary>*/}
+                {/*  <RowBetween>*/}
+                {/*    <ExternalLink href={'https://uniswap.info/account/' + account}>*/}
+                {/*      Account analytics and accrued fees*/}
+                {/*    </ExternalLink>*/}
+                {/*    <span> ↗</span>*/}
+                {/*  </RowBetween>*/}
+                {/*</ButtonSecondary>*/}
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 ))}

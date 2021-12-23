@@ -27,6 +27,12 @@ function fetchClaim(account: string, chainId: ChainId): Promise<UserClaimData | 
   if (!formatted) return Promise.reject(new Error('Invalid address'))
   const key = `${chainId}:${account}`
 
+  if (chainId === 90001) {
+    return new Promise<UserClaimData | null>((resolve, reject) => {
+      return null
+    })
+  }
+
   return (CLAIM_PROMISES[key] =
     CLAIM_PROMISES[key] ??
     fetch(`https://gentle-frost-9e74.uniswap.workers.dev/${chainId}/${formatted}`)
