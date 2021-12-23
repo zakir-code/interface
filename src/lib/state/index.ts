@@ -7,17 +7,18 @@ import { Web3ReactHooks } from 'widgets-web3-react/core'
 import { initializeConnector } from 'widgets-web3-react/core'
 import { Connector } from 'widgets-web3-react/types'
 
-class EmptyConnector extends Connector {
-  activate() {
-    void 0
-  }
-}
+const EMPTY_CONNECTOR = initializeConnector<Connector>(
+  (actions) =>
+    new (class EmptyConnector extends Connector {
+      activate() {
+        void 0
+      }
+    })(actions)
+)
 
 type Web3Context = [Connector, Web3ReactHooks]
 
-export const networkAtom = atomWithDefault<Web3Context>(() =>
-  initializeConnector<Connector>((actions) => new EmptyConnector(actions))
-)
+export const networkAtom = atomWithDefault<Web3Context>(() => EMPTY_CONNECTOR)
 
 export const injectedAtom = atomWithDefault<Web3Context | null>(() => null) as WritableAtom<
   Web3Context,
